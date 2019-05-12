@@ -85,7 +85,7 @@ public class VistaLibro extends JPanel{
 		
 		
 		//******************Panel inferior (TABLA)******************//
-		String[] colname = {"ISBN", "Titulo", "Año de Publicación", "Edición","ID Editorial"};
+		String[] colname = {"ISBN", "TITULO", "EDICIÓN", "AÑO DE PUBLICACIÓN","ID EDITORIAL"};
 		
 		tabla = new DbTabla(colname);
 		gbcInferior = new GridBagConstraints();
@@ -187,24 +187,7 @@ public class VistaLibro extends JPanel{
 			
 	        tabla.addMouseListener(c);
 	  }
-	
-	 
-	//********************** Frame ***************************//
-	public static void main(String[] args) {
-		System.out.println("Loading ...");
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(3);
-		frame.setSize(800, 600);
-		
-		VistaLibro vista = new VistaLibro();
-		ModeloLibro modelo = new ModeloLibro();
-		ControladorLibro control = new ControladorLibro(vista,modelo);
-		vista.conectaControlador(control);
-		
-		frame.getContentPane().add(vista);
-		frame.setVisible(true);
-	}
-	
+
 }
 
 

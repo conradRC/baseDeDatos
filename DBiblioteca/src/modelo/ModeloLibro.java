@@ -21,10 +21,10 @@ public class ModeloLibro {
             ps  = conectiondb.getConexion().prepareStatement(sqlInsertLibro);
             ps.setString(1, l.getIsbn());
             ps.setString(2, l.getTitulo());
-            ps.setInt	(3, l.getAnioPublicacion());
-            ps.setInt	(4, l.getEdicion());
+            ps.setInt	(3, l.getEdicion());
+            ps.setInt	(4, l.getAnioPublicacion());
             ps.setInt	(5, l.getIdEditorial());
-            //Ejecutar el comando insert
+       
             ps.executeUpdate();
             return true;
         }catch (SQLException exception) {
@@ -33,81 +33,71 @@ public class ModeloLibro {
         }
 	}
 	
-	/*public boolean deleteLibro(Libro l){
-        //Objeto para ejecutar los procedimientos almacenados en la base de datos
+	public boolean deleteLibro(Libro l){
         PreparedStatement ps;
 		String sqlDeleteLibro = "delete from scbiblioteca.libro where isbn  = ?;";
+		
         try{
-            //Preparar la llamada
             ps  = conectiondb.getConexion().prepareStatement(sqlDeleteLibro);
-
-            //Indicar qué información se pasa al Statement
             ps.setString(1, l.getIsbn());
-            //Ejecutar el procedimiento
+
             ps.executeUpdate();
             //System.out.println(this.view.dtm.getValueAt(filaPulsada, 0));
 	    return true;
         }catch (SQLException exception) {
-            System.err.println("Error en el BORRADO "+ exception);
+            System.err.println("Error en el BORRADO (Libro)"+ exception);
 			return false;
         }
 	}
 	
 	public boolean updateLibro(Libro l){
-        //Objeto para ejecutar los procedimientos almacenados en la base de datos
+       
         PreparedStatement ps;
 		String sqlUpdateLibro = "update scbiblioteca.libro set titulo = ?, edicion = ?, anioPublicacion = ?, idEditorial = ? where isbn = ?;";
         try{
-            //Preparar la llamada
+       
             ps  = conectiondb.getConexion().prepareStatement(sqlUpdateLibro);
-                
-            //Indicar qué información se pasa al procedimiento
+       
             ps.setString(1, l.getIsbn());
             ps.setString(2, l.getTitulo());
-            ps.setInt	(3, l.getAnioPublicacion());
-            ps.setInt	(4, l.getEdicion());
+            ps.setInt	(3, l.getEdicion());
+            ps.setInt	(4, l.getAnioPublicacion());
             ps.setInt	(5, l.getIdEditorial());
-            //Ejecutar el procedimiento
+            
             ps.executeUpdate();
-            //System.out.println(this.view.dtm.getValueAt(filaPulsada, 0));
+            
 			return true;
         }catch (SQLException exception) {
-            System.err.println("Error en la MODIFICACION " + exception);
+            System.err.println("Error en la MODIFICACION (Libro " + exception);
 			return false;
         }
 	}
 	
 	public Libro selectLibro(Libro l){
-        //Objeto para ejecutar los procedimientos almacenados en la base de datos
-        PreparedStatement ps;
-        //Objeto para recoger los datos devueltos por el procedimiento almacenado
-        ResultSet rs;
+     
+		PreparedStatement ps;
+        
+		ResultSet rs;
 		
-		// Objeto con el cliente encontrado
 		Libro libroEncontrado= null;
-		
 		
 		String sqlConsulta = "select isbn, titulo, edicion, anioPublicacion, idEditorial from scbiblioteca.libro where isbn = ?;";
         try{
-            //Preparar la llamada
+           
             ps  = conectiondb.getConexion().prepareStatement(sqlConsulta);
-                       
-            //Indicar qué información se pasa al procedimiento
             ps.setString(1, l.getIsbn());
-            //Ejecutar el procedimiento
+           
             rs  = ps.executeQuery();
-            //Cargar los datos devueltos en los cuadros de texto
+            
             if(rs.next()){
             	libroEncontrado = new Libro(rs.getString(1), rs.getString(2), rs.getInt(3), rs.getInt(4), rs.getInt(5));  
             }
-			
-            //System.out.println(this.view.dtm.getValueAt(filaPulsada, 0));
         }catch (SQLException exception) {
-            System.err.println("Error al CARGAR UN ESTUDIANTE");
+            System.err.println("Error al CARGAR UN Libro");
         }
 		return libroEncontrado;
 	}
-	*/
+	
 	
 	public List<Libro> listLibro(){
 	PreparedStatement ps;
@@ -134,8 +124,4 @@ public class ModeloLibro {
 		return libros;
 	}
 	
-	public Conectiondb getConectiondb() {
-		return conectiondb;
-	}
-
 }

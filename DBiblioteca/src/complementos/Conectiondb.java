@@ -7,16 +7,14 @@ import java.sql.SQLException;
 
 public class Conectiondb {
     private String  usuario     = "postgres";
-    private String  clave       = "";
+    private String  clave       = "conrado/027";
     private String  servidor    = "";
 	private String  baseDatos ;
     private static Connection conexion  = null;
  
     //CONSTRUCTOR
     //Recibe el nombre de la base de datos
-	
-
-	
+		
 	public Conectiondb(String baseDatos, String host) {
 		this.baseDatos = baseDatos;
 		this.servidor="jdbc:postgresql://"+host+":"+ 5432+"/"+baseDatos;

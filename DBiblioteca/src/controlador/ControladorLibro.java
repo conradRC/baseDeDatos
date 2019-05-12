@@ -6,11 +6,13 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.util.List;
 import java.util.Vector;
+
 import complementos.Conectiondb;
 import modelo.Libro;
 import modelo.ModeloLibro;
-import vista.VistaLibro;
+import vista.DbPrincipal;
 import vista.VistaEditorial;
+import vista.VistaLibro;
 
 public class ControladorLibro implements ActionListener, MouseListener{
 
@@ -37,24 +39,34 @@ public class ControladorLibro implements ActionListener, MouseListener{
 								Integer.parseInt(vistaLibro.getCampo4()), Integer.parseInt(vistaLibro.getCampo5()));
 			 modeloLibro.insertLibro(libro);
 			break;
+			
 		case "BORRAR":
 			int filaPulsada = vistaLibro.getTabla().tabla.getSelectedRow();
 			 if(filaPulsada>=0){
-                	//String numControl = (String) vistaLibro.getTabla().tableModel.getValueAt(filaPulsada,0);
-					System.out.println("pulsado : "+ filaPulsada);
+				 libro = new Libro();
+                	String isbn = (String) vistaLibro.getTabla().tableModel.getValueAt(filaPulsada,0);
+					libro.setIsbn(isbn);
+					modeloLibro.deleteLibro(libro);
              }
 			 
 			break;
 		case "MODIFICAR":
 			filaPulsada = vistaLibro.getTabla().tabla.getSelectedRow();
 			 if(filaPulsada>=0){
-					System.out.println("pulsado : "+ filaPulsada);
+				 libro = new Libro();
+				 String isbn = (String) vistaLibro.getTabla().tableModel.getValueAt(filaPulsada,0);
+				 libro.setIsbn(isbn);
+				 libro.setTitulo(vistaLibro.getCampo2());
+				 libro.setEdicion(Integer.parseInt(vistaLibro.getCampo3()));
+				 libro.setAnioPublicacion(Integer.parseInt(vistaLibro.getCampo4()));
+				 libro.setIdEditorial(Integer.parseInt(vistaLibro.getCampo5()));
+				 modeloLibro.updateLibro(libro);
 			 }
 			
 			break;
 		case "SALIR":
 			 conexion.closeConexion();
-			System.out.println("Cerrar ventana, terminar conexión");
+			 //principal.dispose();
 			break;
 			
 		case "EDITORIAL":
