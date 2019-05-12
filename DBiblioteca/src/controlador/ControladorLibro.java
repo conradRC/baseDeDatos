@@ -59,6 +59,7 @@ public class ControladorLibro implements ActionListener, MouseListener{
 			
 		case "EDITORIAL":
 			VistaEditorial.initEditorial();
+			break;
 		default:
 			  System.err.println("Comando no definido");
 			break;

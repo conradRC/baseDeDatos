@@ -14,7 +14,6 @@ public class ModeloLibro {
 		conectiondb = new Conectiondb(db, "127.0.0.1");
 	}
 	
-	
 	public boolean insertLibro(Libro l){
         PreparedStatement ps;
 	    String sqlInsertLibro = "insert into scbiblioteca.libro values (?,?,?,?,?);";
@@ -29,7 +28,7 @@ public class ModeloLibro {
             ps.executeUpdate();
             return true;
         }catch (SQLException exception) {
-            System.err.println("Error en la INSERCIÓN " + exception );
+            System.err.println("Error en la INSERCIÓN  (Libro)" + exception );
 			return false;
         }
 	}
@@ -130,9 +129,13 @@ public class ModeloLibro {
             }
  
         } catch (SQLException exception) {
-            System.err.println("Error al CARGAR DATOS " + exception);
+            System.err.println("Error al CARGAR DATOS (Libro)" + exception);
         }
 		return libros;
+	}
+	
+	public Conectiondb getConectiondb() {
+		return conectiondb;
 	}
 
 }

@@ -16,6 +16,8 @@ import javax.swing.JTextField;
 import complementos.DbTabla;
 import complementos.Inputs;
 import controlador.ControladorEditorial;
+import modelo.ModeloEditorial;
+import modelo.ModeloLibro;
 
 public class VistaEditorial extends JPanel {
 
@@ -154,11 +156,16 @@ public DbTabla getTabla() { return tabla; }
  	
 //********************** Inir Editorial ***************************//
 public static void initEditorial() {
-	System.out.println("Loading ...");
 	JFrame frame = new JFrame();
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setSize(700, 400);
-	frame.getContentPane().add(new VistaEditorial());
+	
+	VistaEditorial vista = new VistaEditorial();
+	ModeloEditorial modelo = new ModeloEditorial();
+	ControladorEditorial controlador = new ControladorEditorial(vista, modelo);
+	vista.conectaControlador(controlador);
+	
+	frame.getContentPane().add(vista);
 	frame.setVisible(true);
 }
 
