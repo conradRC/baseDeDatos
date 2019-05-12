@@ -20,6 +20,7 @@ public class ControladorLibro implements ActionListener, MouseListener{
 	private ModeloLibro modeloLibro;
 	private Libro libro;
 	private Conectiondb conexion;
+	private DbPrincipal principal;
 	
 	public ControladorLibro(VistaLibro vista, ModeloLibro modelo) {
 		this.vistaLibro = vista;
@@ -65,8 +66,8 @@ public class ControladorLibro implements ActionListener, MouseListener{
 			
 			break;
 		case "SALIR":
-			 conexion.closeConexion();
-			 //principal.dispose();
+			this.conexion.closeConexion();
+			principal.dispose();
 			break;
 			
 		case "EDITORIAL":
