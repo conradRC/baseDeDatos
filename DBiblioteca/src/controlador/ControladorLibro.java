@@ -10,6 +10,7 @@ import complementos.Conectiondb;
 import modelo.Libro;
 import modelo.ModeloLibro;
 import vista.VistaLibro;
+import vista.VistaEditorial;
 
 public class ControladorLibro implements ActionListener, MouseListener{
 
@@ -55,7 +56,9 @@ public class ControladorLibro implements ActionListener, MouseListener{
 			 conexion.closeConexion();
 			System.out.println("Cerrar ventana, terminar conexión");
 			break;
-
+			
+		case "EDITORIAL":
+			VistaEditorial.initEditorial();
 		default:
 			  System.err.println("Comando no definido");
 			break;

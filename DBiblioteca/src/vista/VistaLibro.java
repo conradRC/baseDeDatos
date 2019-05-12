@@ -182,6 +182,9 @@ public class VistaLibro extends JPanel{
 			btnExit.addActionListener(c);
 			btnExit.setActionCommand("SALIR");
 	 
+			btnEditorial.addActionListener(c);
+			btnEditorial.setActionCommand("EDITORIAL");
+			
 	        tabla.addMouseListener(c);
 	  }
 	
@@ -201,4 +204,5 @@ public class VistaLibro extends JPanel{
 	}
 	
 }
+
 

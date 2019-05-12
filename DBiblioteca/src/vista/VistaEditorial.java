@@ -6,15 +6,17 @@ import java.awt.FlowLayout;
 import java.awt.Font;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.awt.Insets;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import complementos.DbTabla;
 import complementos.Inputs;
 import controlador.ControladorEditorial;
+
 public class VistaEditorial extends JPanel {
 
 	private GridBagConstraints gbcInferior,gbcSuperior,gbcPanelBotones;
@@ -25,7 +27,9 @@ public class VistaEditorial extends JPanel {
 	Font font = new Font("Tahoma",Font.PLAIN,15);
 	private JPanel panelBotones;
 	
-	public VistaEditorial() {setBackground(Color.WHITE);
+	public VistaEditorial() {
+		setBackground(Color.WHITE);
+		
 	
 	GridBagLayout gbl = new GridBagLayout();
 	gbl.rowWeights = new double[]{0.0, 1.0, 0.0};
@@ -147,9 +151,9 @@ public DbTabla getTabla() { return tabla; }
         tabla.addMouseListener(c);
   }
 
- 
-//********************** Frame ***************************//
-public static void main(String[] args) {
+ 	
+//********************** Inir Editorial ***************************//
+public static void initEditorial() {
 	System.out.println("Loading ...");
 	JFrame frame = new JFrame();
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
