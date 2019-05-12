@@ -7,7 +7,6 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
-import java.awt.SystemColor;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -42,7 +41,7 @@ public class VistaLibro extends JPanel{
 		gbl.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 1.0};
 		setLayout(gbl);
 		
-		campo5=new JTextField();
+		
 		//**************Panel superior*************//
 		
 		panelSuperior = new JPanel();
@@ -58,15 +57,17 @@ public class VistaLibro extends JPanel{
 		add(panelSuperior, gbcSuperior);
 		
 		panelSuperior.setLayout(new GridLayout(2,3,5,5));
+		
+		//******************Inputs*************//
+		
 		campo1 = new JTextField();
 		campo2 = new JTextField();
 		campo3 = new JTextField();
 		campo4 = new JTextField();
+		campo5 = new JTextField();
 		comboBox = new JComboBox<String>();
 		comboBox.addItem("Seleccione editorial  ");
 		
-		
-		//******************Inputs*************//
 		//Titulos de las Etiquetas
 		String [] name= {"ISBN : ", "Titulo : ","Edición : ", "Publicación : ", "ID Editorial : "};
 		//Campos 
