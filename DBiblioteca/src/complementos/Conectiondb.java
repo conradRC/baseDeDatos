@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 public class Conectiondb {
     private String  usuario     = "postgres";
-    private String  clave       = "conrado/027";
+    private String  clave       = "";
     private String  servidor    = "";
 	private String  baseDatos ;
     private static Connection conexion  = null;
