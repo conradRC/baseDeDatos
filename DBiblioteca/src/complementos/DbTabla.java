@@ -22,7 +22,7 @@ public class DbTabla extends JPanel {
             public boolean isCellEditable(int row, int column) {
                 return !(this.getColumnClass(column).equals(java.lang.String.class));
             }
-			};
+		};
 		
 		tabla = new JTable (tableModel);
 		
@@ -32,15 +32,5 @@ public class DbTabla extends JPanel {
 		tabla.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		
 	}
-	
-	//Método para agregar datos en la fila especificada
-	public void agregarDatosTabla(Object [] datos) {
-		tableModel.addRow(datos);
-	}
-	//Método para eliminar un dato de la fila especificada
-	public void removerDatosTabla(int fila) {
-		tableModel.removeRow(fila);
-	}
-	
 	
 }

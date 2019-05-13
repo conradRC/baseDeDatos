@@ -28,6 +28,7 @@ public class VistaEditorial extends JPanel {
 	protected JTextField campo1,campo2;
 	Font font = new Font("Tahoma",Font.PLAIN,15);
 	private JPanel panelBotones;
+	private static JFrame frame;
 	
 	public VistaEditorial() {
 		setBackground(Color.WHITE);
@@ -62,7 +63,7 @@ public class VistaEditorial extends JPanel {
 	//Etiquetas
 	campo1 = new JTextField();
 	campo2 = new JTextField();
-	String [] name= {"ID Editorial : ", "Nombre :"};
+	String [] name= {"ID : ", "Nombre :"};
 	//Campos 
 	JTextField [] text= {campo1,campo2};
 	
@@ -75,7 +76,7 @@ public class VistaEditorial extends JPanel {
 	}
 	
 	//******************Panel inferior (TABLA)******************//
-	String[] colname = {"ID Editorial", "Nombre"};
+	String[] colname = {"ID", "Nombre"};
 	
 	tabla = new DbTabla(colname);
 	gbcInferior = new GridBagConstraints();
@@ -153,10 +154,13 @@ public DbTabla getTabla() { return tabla; }
         tabla.addMouseListener(c);
   }
 
- 	
+ public static JFrame getFrame() {
+		return frame;
+	}
+
 //********************** Inir Editorial ***************************//
 public static void initEditorial() {
-	JFrame frame = new JFrame();
+	frame = new JFrame();
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 	frame.setSize(700, 400);
 	
@@ -168,5 +172,8 @@ public static void initEditorial() {
 	frame.getContentPane().add(vista);
 	frame.setVisible(true);
 }
+
+
+
 
 }

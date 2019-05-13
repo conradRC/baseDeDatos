@@ -33,6 +33,67 @@ public class ModeloEditorial {
         }
 	}
 	
+	public boolean deleteEditorial(Editorial l){
+        PreparedStatement ps;
+		String sqlDeleteEditorial = "delete from scbiblioteca.editorial where idEditorial  = ?;";
+		
+        try{
+            ps  = conectiondb.getConexion().prepareStatement(sqlDeleteEditorial);
+            ps.setInt(1, l.getIdEditorial());
+
+            ps.executeUpdate();
+	    return true;
+        }catch (SQLException exception) {
+            System.err.println("Error en el BORRADO (Editorial)"+ exception);
+			return false;
+        }
+	}
+	
+	public boolean updateEditorial(Editorial l){
+	       
+        PreparedStatement ps;
+		String sqlUpdateLibro = "update scbiblioteca.editorial set nombreeditorial = ?, where idEditorial = ?;";
+        try{
+       
+            ps  = conectiondb.getConexion().prepareStatement(sqlUpdateLibro);
+       
+            ps.setInt(1, l.getIdEditorial());
+            ps.setString(2, l.getNombreeditorial());
+            ps.executeUpdate();
+            
+			return true;
+        }catch (SQLException exception) {
+            System.err.println("Error en la MODIFICACION (Editorial " + exception);
+			return false;
+        }
+	}
+	
+	public Editorial selectEditorial(Editorial l){
+	     
+		PreparedStatement ps;
+        
+		ResultSet rs;
+		
+		Editorial editorialEncontrado= null;
+		
+		String sqlConsulta = "select idEditorial, nombreeditorial from scbiblioteca.editorial where idEditorial = ?;";
+        try{
+           
+            ps  = conectiondb.getConexion().prepareStatement(sqlConsulta);
+            ps.setInt(1, l.getIdEditorial());
+           
+            rs  = ps.executeQuery();
+            
+            if(rs.next()){
+            	editorialEncontrado = new Editorial(rs.getInt(1), rs.getString(2));  
+            }
+        }catch (SQLException exception) {
+            System.err.println("Error al CARGAR UN Editorial");
+        }
+		return editorialEncontrado;
+	}
+	
+	
 	public List<Editorial> listEditorial(){
 		PreparedStatement ps;
 	        ResultSet rs;

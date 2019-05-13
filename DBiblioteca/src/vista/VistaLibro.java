@@ -29,6 +29,7 @@ public class VistaLibro extends JPanel{
 	private DbTabla tabla;
 	protected JTextField campo1,campo2,campo3,campo4,campo5;
 	protected JComboBox<String > comboBox;
+	private static JFrame frame;
 	
 
 	Font font = new Font("Tahoma",Font.PLAIN,15);
@@ -187,7 +188,26 @@ public class VistaLibro extends JPanel{
 			
 	        tabla.addMouseListener(c);
 	  }
+	
+	 
+	 public static JFrame getFrame() {
+			return frame;
+	 }
+	 
+	public static void main(String[] args) {
+			frame = new JFrame();
+			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			frame.setSize(800, 600);
+			
+			VistaLibro vista = new VistaLibro();
+			ModeloLibro modelo = new ModeloLibro();
+			ControladorLibro control = new ControladorLibro(vista,modelo);
+			vista.conectaControlador(control);
+				
+			frame.add(vista);
+			frame.setVisible(true);
+	}
+	}
 
-}
 
 

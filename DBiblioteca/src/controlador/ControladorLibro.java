@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
@@ -66,8 +67,7 @@ public class ControladorLibro implements ActionListener, MouseListener{
 			
 			break;
 		case "SALIR":
-			this.conexion.closeConexion();
-			principal.dispose();
+			VistaLibro.getFrame().dispose();
 			break;
 			
 		case "EDITORIAL":

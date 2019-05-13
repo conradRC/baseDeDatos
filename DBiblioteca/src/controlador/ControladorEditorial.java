@@ -37,6 +37,33 @@ public class ControladorEditorial implements ActionListener, MouseListener{
 			editorial = new Editorial(Integer.parseInt(vistaEditorial.getCampo1()), vistaEditorial.getCampo2());
 			modeloEditorial.insertEditorial(editorial);
 			break;
+			
+			case "BORRAR":
+				int filaPulsada = vistaEditorial.getTabla().tabla.getSelectedRow();
+				 if(filaPulsada>=0){
+					 editorial = new Editorial();
+	                	int idEditorial = (int) vistaEditorial.getTabla().tableModel.getValueAt(filaPulsada,0);
+	                	
+						editorial.setIdEditorial(idEditorial);
+						modeloEditorial.deleteEditorial(editorial);
+	             }
+				 break;
+			case "MODIFICAR":
+				filaPulsada = vistaEditorial.getTabla().tabla.getSelectedRow();
+				 if(filaPulsada>=0){
+					 editorial = new Editorial();
+					 int idEditorial = Integer.parseInt((String) vistaEditorial.getTabla().tableModel.getValueAt(filaPulsada,0));
+					 editorial.setIdEditorial(idEditorial);
+					 editorial.setNombreeditorial(vistaEditorial.getCampo2()); 
+					 modeloEditorial.updateEditorial(editorial);
+				 }
+				break;
+				
+			case "SALIR":
+				conexion.closeConexion();
+				vistaEditorial.getFrame().dispose();
+				break;
+				
 			default:
 				  System.err.println("Comando no definido - Editorial");
 				break;
