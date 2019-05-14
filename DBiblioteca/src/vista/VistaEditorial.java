@@ -154,24 +154,24 @@ public DbTabla getTabla() { return tabla; }
         tabla.addMouseListener(c);
   }
 
- public static JFrame getFrame() {
+  public static JFrame getFrame() {
 		return frame;
-	}
+  }
 
-//********************** Inir Editorial ***************************//
-public static void initEditorial() {
-	frame = new JFrame();
-	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setSize(700, 400);
+ //********************** Inir Editorial ***************************//
+ 	public static void initEditorial() {
+ 		frame = new JFrame();
+ 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+ 		frame.setSize(700, 400);
+ 		
+ 		VistaEditorial vista = new VistaEditorial();
+ 		ModeloEditorial modelo = new ModeloEditorial();
+ 		ControladorEditorial controlador = new ControladorEditorial(vista, modelo);
+ 		vista.conectaControlador(controlador);
 	
-	VistaEditorial vista = new VistaEditorial();
-	ModeloEditorial modelo = new ModeloEditorial();
-	ControladorEditorial controlador = new ControladorEditorial(vista, modelo);
-	vista.conectaControlador(controlador);
-	
-	frame.getContentPane().add(vista);
-	frame.setVisible(true);
-}
+ 		frame.getContentPane().add(vista);
+ 		frame.setVisible(true);
+ 	}
 
 
 

@@ -28,12 +28,22 @@ public class VistaLibro extends JPanel{
 	private JButton btnAdd,btnDel,btnUpd,btnExit,btnEditorial;
 	private DbTabla tabla;
 	protected JTextField campo1,campo2,campo3,campo4,campo5;
-	protected JComboBox<String > comboBox;
+	protected JComboBox<Integer> comboBox;
+	protected JComboBox<String> comboBoAutor;
+	
+	private static VistaLibro libro;
 	private static JFrame frame;
 	
+	public VistaLibro getVistaLibro() {
+		if(libro==null) libro = new VistaLibro();
+		return libro;
+	}
 
 	Font font = new Font("Tahoma",Font.PLAIN,15);
 	private JPanel panelBotones;
+	
+	
+	
 	public VistaLibro() {
 		setBackground(Color.WHITE);
 		
@@ -66,27 +76,28 @@ public class VistaLibro extends JPanel{
 		campo3 = new JTextField();
 		campo4 = new JTextField();
 		campo5 = new JTextField();
-		comboBox = new JComboBox<String>();
-		comboBox.addItem("Seleccione editorial  ");
+		comboBox = new JComboBox<Integer>();
+		comboBoAutor = new JComboBox<String>(); 
 		
 		//Titulos de las Etiquetas
-		String [] name= {"ISBN : ", "Titulo : ","Edición : ", "Publicación : ", "ID Editorial : "};
+		String [] name= {"ISBN : ", "Titulo : ","Edición : ", "Publicación : "};
 		//Campos 
-		JTextField [] text= {campo1,campo2,campo3,campo4,campo5};
+		JTextField [] text= {campo1,campo2,campo3,campo4};
 		
-		for (byte c = 0; c < 5; c++) {
+		for (byte c = 0; c < 4; c++) {
 			text[c].setColumns(12);
 			text[c].setBackground(new Color(238,238,238));
 			text[c].setFont(new Font("Tahoma",Font.PLAIN,14));
 			text[c].setPreferredSize(new Dimension(10,20));
 			panelSuperior.add(new Inputs(name[c], text[c]));
 		}
-		//comboBox.setPreferredSize(new Dimension(147,20));
-		//panelSuperior.add(new Inputs("ID Editorial : ", comboBox));
-		
+		comboBox.setPreferredSize(new Dimension(147,20));
+		panelSuperior.add(new Inputs("ID Editorial : ", comboBox));
+		comboBoAutor.setPreferredSize(new Dimension(147,20));
+		panelSuperior.add(new Inputs("Autor : ", comboBoAutor));
 		
 		//******************Panel inferior (TABLA)******************//
-		String[] colname = {"ISBN", "TITULO", "EDICIÓN", "AÑO DE PUBLICACIÓN","ID EDITORIAL"};
+		String[] colname = {"ISBN", "TITULO", "EDICIÓN", "AÑO DE PUBLICACIÓN","ID EDITORIAL","AUTOR"};
 		
 		tabla = new DbTabla(colname);
 		gbcInferior = new GridBagConstraints();
@@ -149,24 +160,33 @@ public class VistaLibro extends JPanel{
 	public void setCampo1(String n) { campo1.setText(n); }
 	public void setCampo2(String n) { campo2.setText(n); }
 	public void setCampo3(String n) { campo3.setText(n); }
-	public void setCampo5(String n) { campo5.setText(n); }
 	public void setCampo4(String n) { campo4.setText(n); }
+	//public void setCampo5(String n) { campo5.setText(n); }
 	
-	public void setComboBox(String n) { comboBox.addItem(n); }
-
+	public void setComboBox(String n) { comboBox.setSelectedItem(n); }
+	public void setComboBoAutor(String n) {comboBoAutor.setSelectedItem(n); }
 	
 	//****************************getCampos*****************************//
 	public String getCampo1() { return campo1.getText(); }
 	public String getCampo2() { return campo2.getText(); }
 	public String getCampo3() { return campo3.getText(); }
 	public String getCampo4() { return campo4.getText(); }
-	public String getCampo5() { return campo5.getText(); }
-	
-	public String getComboBox() { return comboBox.getItemAt(0); }
+	public String getComboBox() { return String.valueOf(comboBox.getSelectedItem()); }
+	public String getComboBoAutor() {return String.valueOf(comboBoAutor.getSelectedItem());}
+
 
 	
 	//****************************getTabla*****************************//
 	public DbTabla getTabla() { return tabla; }
+	
+	
+	public void agregarItem(int n) {
+		comboBox.addItem(n);
+	}
+	
+	public void agregarItemA(String n) {
+		comboBoAutor.addItem(n);
+	}
 	
 	
 	//*********************Controlador - Libro************************//
@@ -200,7 +220,7 @@ public class VistaLibro extends JPanel{
 			frame.setSize(800, 600);
 			
 			VistaLibro vista = new VistaLibro();
-			ModeloLibro modelo = new ModeloLibro();
+			ModeloLibro modelo = new ModeloLibro(vista);
 			ControladorLibro control = new ControladorLibro(vista,modelo);
 			vista.conectaControlador(control);
 				
@@ -208,6 +228,3 @@ public class VistaLibro extends JPanel{
 			frame.setVisible(true);
 	}
 	}
-
-
-

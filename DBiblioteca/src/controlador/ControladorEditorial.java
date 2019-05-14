@@ -11,10 +11,12 @@ import modelo.Editorial;
 import modelo.Libro;
 import modelo.ModeloEditorial;
 import vista.VistaEditorial;
+import vista.VistaLibro;
 
 public class ControladorEditorial implements ActionListener, MouseListener{
 
 	private VistaEditorial vistaEditorial;
+	private VistaLibro vistaLibro;
 	private ModeloEditorial modeloEditorial;
 	private Editorial editorial;
 	private Conectiondb conexion;
@@ -60,7 +62,7 @@ public class ControladorEditorial implements ActionListener, MouseListener{
 				break;
 				
 			case "SALIR":
-				conexion.closeConexion();
+				//conexion.closeConexion();
 				vistaEditorial.getFrame().dispose();
 				break;
 				
@@ -89,10 +91,15 @@ public class ControladorEditorial implements ActionListener, MouseListener{
 	    	   fila = new Vector<Object>();
 	    	   fila.add(editorial.getIdEditorial());
 	    	   fila.add(editorial.getNombreeditorial());
-	    	   
+
+	           //vistaLibro.agregarItem(editorial.getIdEditorial());
+	           
 	    	   vistaEditorial.getTabla().tableModel.addRow(fila);
 	       }
 	}
+	
+	
+	
 	
 	
 	@Override

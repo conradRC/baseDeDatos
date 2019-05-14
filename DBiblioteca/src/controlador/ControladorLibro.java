@@ -38,7 +38,7 @@ public class ControladorLibro implements ActionListener, MouseListener{
 		case "INSERTAR":
 			
 			libro = new Libro(this.vistaLibro.getCampo1(),vistaLibro.getCampo2(), Integer.parseInt(vistaLibro.getCampo3()), 
-								Integer.parseInt(vistaLibro.getCampo4()), Integer.parseInt(vistaLibro.getCampo5()));
+								Integer.parseInt(vistaLibro.getCampo4()), Integer.parseInt(vistaLibro.getComboBox()),vistaLibro.getComboBoAutor());
 			 modeloLibro.insertLibro(libro);
 			break;
 			
@@ -61,7 +61,8 @@ public class ControladorLibro implements ActionListener, MouseListener{
 				 libro.setTitulo(vistaLibro.getCampo2());
 				 libro.setEdicion(Integer.parseInt(vistaLibro.getCampo3()));
 				 libro.setAnioPublicacion(Integer.parseInt(vistaLibro.getCampo4()));
-				 libro.setIdEditorial(Integer.parseInt(vistaLibro.getCampo5()));
+				 libro.setIdEditorial(Integer.parseInt(vistaLibro.getComboBox()));
+				 libro.setAutor(vistaLibro.getComboBoAutor());
 				 modeloLibro.updateLibro(libro);
 			 }
 			
@@ -87,7 +88,8 @@ public class ControladorLibro implements ActionListener, MouseListener{
         vistaLibro.setCampo2("");
         vistaLibro.setCampo3("");
         vistaLibro.setCampo4("");
-        vistaLibro.setCampo5("");
+        vistaLibro.setComboBox("");
+        vistaLibro.setComboBoAutor("");
     }
 	
 	
@@ -99,6 +101,7 @@ public class ControladorLibro implements ActionListener, MouseListener{
         }
         
 		List<Libro> libros = modeloLibro.listLibro();
+		
         //public Libro(String isbn, String titulo, int edicion, int anioPublicacion, int idEditorial) {
         for(Libro libro: libros){
                 fila    = new Vector<Object>();
@@ -107,9 +110,10 @@ public class ControladorLibro implements ActionListener, MouseListener{
                 fila.add(libro.getEdicion());
                 fila.add(libro.getAnioPublicacion());
                 fila.add(libro.getIdEditorial());
-                
+                fila.add(libro.getAutor());
                 vistaLibro.getTabla().tableModel.addRow(fila);
             }
+        
     }
 	
 	
