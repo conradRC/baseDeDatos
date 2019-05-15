@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import complementos.DbTabla;
 import complementos.Inputs;
+import controlador.ControladorEditorial;
 import controlador.ControladorLibro;
 import modelo.ModeloLibro;
 import java.awt.FlowLayout;
@@ -214,6 +215,7 @@ public class VistaLibro extends JPanel{
 			return frame;
 	 }
 	 
+	 
 	public static void main(String[] args) {
 			frame = new JFrame();
 			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -222,6 +224,7 @@ public class VistaLibro extends JPanel{
 			VistaLibro vista = new VistaLibro();
 			ModeloLibro modelo = new ModeloLibro(vista);
 			ControladorLibro control = new ControladorLibro(vista,modelo);
+			
 			vista.conectaControlador(control);
 				
 			frame.add(vista);
