@@ -1,5 +1,6 @@
  package modelo;
 
+
 public class Editorial {
 	
 	private int idEditorial;
@@ -24,6 +25,11 @@ public class Editorial {
 	}
 	public void setNombreeditorial(String nombreeditorial) {
 		this.nombreeditorial = nombreeditorial;
+	}
+	
+	public String toString() {
+		String a = "Editorial" + getIdEditorial();
+		return a;
 	}
 	
 }

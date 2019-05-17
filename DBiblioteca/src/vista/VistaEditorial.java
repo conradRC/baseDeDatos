@@ -16,7 +16,6 @@ import javax.swing.JTextField;
 import complementos.DbTabla;
 import complementos.Inputs;
 import controlador.ControladorEditorial;
-import modelo.ModeloEditorial;
 import modelo.ModeloLibro;
 
 public class VistaEditorial extends JPanel {
@@ -165,15 +164,14 @@ public DbTabla getTabla() { return tabla; }
  		frame.setSize(700, 400);
  		
  		VistaEditorial vista = new VistaEditorial();
- 		ModeloEditorial modelo = new ModeloEditorial();
+ 		VistaLibro vista1 = new VistaLibro();
+ 		ModeloLibro modelo = new ModeloLibro(vista1);
+
  		ControladorEditorial controlador = new ControladorEditorial(vista, modelo);
  		vista.conectaControlador(controlador);
 	
  		frame.getContentPane().add(vista);
  		frame.setVisible(true);
  	}
-
-
-
 
 }

@@ -4,14 +4,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
-import java.sql.SQLException;
 import java.util.List;
 import java.util.Vector;
 
 import complementos.Conectiondb;
 import modelo.Libro;
 import modelo.ModeloLibro;
-import vista.DbPrincipal;
 import vista.VistaEditorial;
 import vista.VistaLibro;
 
@@ -21,7 +19,6 @@ public class ControladorLibro implements ActionListener, MouseListener{
 	private ModeloLibro modeloLibro;
 	private Libro libro;
 	private Conectiondb conexion;
-	private DbPrincipal principal;
 	
 	public ControladorLibro(VistaLibro vista, ModeloLibro modelo) {
 		this.vistaLibro = vista;

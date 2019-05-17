@@ -17,9 +17,9 @@ import javax.swing.SwingConstants;
 
 import complementos.DbTabla;
 import complementos.Inputs;
-import controlador.ControladorEditorial;
 import controlador.ControladorLibro;
 import modelo.ModeloLibro;
+
 import java.awt.FlowLayout;
 
 public class VistaLibro extends JPanel{
@@ -35,7 +35,7 @@ public class VistaLibro extends JPanel{
 	private static VistaLibro libro;
 	private static JFrame frame;
 	
-	public VistaLibro getVistaLibro() {
+	public static VistaLibro getVistaLibro() {
 		if(libro==null) libro = new VistaLibro();
 		return libro;
 	}
@@ -94,8 +94,11 @@ public class VistaLibro extends JPanel{
 		}
 		comboBox.setPreferredSize(new Dimension(147,20));
 		panelSuperior.add(new Inputs("ID Editorial : ", comboBox));
+		
 		comboBoAutor.setPreferredSize(new Dimension(147,20));
 		panelSuperior.add(new Inputs("Autor : ", comboBoAutor));
+		
+		
 		
 		//******************Panel inferior (TABLA)******************//
 		String[] colname = {"ISBN", "TITULO", "EDICIÓN", "AÑO DE PUBLICACIÓN","ID EDITORIAL","AUTOR"};
@@ -215,19 +218,7 @@ public class VistaLibro extends JPanel{
 			return frame;
 	 }
 	 
-	 
-	public static void main(String[] args) {
-			frame = new JFrame();
-			frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			frame.setSize(800, 600);
-			
-			VistaLibro vista = new VistaLibro();
-			ModeloLibro modelo = new ModeloLibro(vista);
-			ControladorLibro control = new ControladorLibro(vista,modelo);
-			
-			vista.conectaControlador(control);
-				
-			frame.add(vista);
-			frame.setVisible(true);
-	}
-	}
+		
+		
+}
+

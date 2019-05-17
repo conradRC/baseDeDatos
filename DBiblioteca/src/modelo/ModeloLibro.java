@@ -14,10 +14,12 @@ public  class ModeloLibro {
 	private Conectiondb conectiondb;
 	private String db ="dbbiblioteca";
 	private VistaLibro vistaLibro;
+	private List<Editorial> editoriales;
 	
 	public ModeloLibro(VistaLibro vistaLibro) {
 		conectiondb = new Conectiondb(db, "127.0.0.1");
 		this.vistaLibro = vistaLibro;
+		listEditorial();
 	}
 
 	public boolean insertLibro(Libro l){
@@ -115,6 +117,7 @@ public  class ModeloLibro {
        		String consultaSQL = "Select * from scbiblioteca.libro;";
        		
        		String consultaSQL2 = "Select rfc, nombre,nacionalidad from scbiblioteca.autores;";
+       		
 		List<Libro> libros = new ArrayList<Libro>();
 		
         try {
@@ -167,5 +170,109 @@ public  class ModeloLibro {
 	        }
 			return autores;
 		}
+	
+	public boolean insertEditorial(Editorial l){
+        PreparedStatement ps;
+	    String sqlInsertEditorial = "insert into scbiblioteca.editorial values (?,?);";
+        try{
+            ps  = conectiondb.getConexion().prepareStatement(sqlInsertEditorial);
+            ps.setInt	(1, l.getIdEditorial());
+            ps.setString(2, l.getNombreeditorial());
+            
+            ps.executeUpdate();
+            return true;
+        }catch (SQLException exception) {
+            System.err.println("Error en la INSERCIÓN (Editorial)" + exception );
+			return false;
+        }
+	}
+	
+	public boolean deleteEditorial(Editorial l){
+        PreparedStatement ps;
+		String sqlDeleteEditorial = "delete from scbiblioteca.editorial where idEditorial  = ?;";
+		
+        try{
+            ps  = conectiondb.getConexion().prepareStatement(sqlDeleteEditorial);
+            ps.setInt(1, l.getIdEditorial());
+
+            ps.executeUpdate();
+	    return true;
+        }catch (SQLException exception) {
+            System.err.println("Error en el BORRADO (Editorial)"+ exception);
+			return false;
+        }
+	}
+	
+	public boolean updateEditorial(Editorial l){
+	       
+        PreparedStatement ps;
+		String sqlUpdateLibro = "update scbiblioteca.editorial set nombreeditorial = ?, where idEditorial = ?;";
+        try{
+       
+            ps  = conectiondb.getConexion().prepareStatement(sqlUpdateLibro);
+       
+            ps.setInt(1, l.getIdEditorial());
+            ps.setString(2, l.getNombreeditorial());
+            ps.executeUpdate();
+            
+			return true;
+        }catch (SQLException exception) {
+            System.err.println("Error en la MODIFICACION (Editorial " + exception);
+			return false;
+        }
+	}
+	
+	public Editorial selectEditorial(Editorial l){
+	     
+		PreparedStatement ps;
+        
+		ResultSet rs;
+		
+		Editorial editorialEncontrado= null;
+		
+		String sqlConsulta = "select idEditorial, nombreeditorial from scbiblioteca.editorial where idEditorial = ?;";
+        try{
+           
+            ps  = conectiondb.getConexion().prepareStatement(sqlConsulta);
+            ps.setInt(1, l.getIdEditorial());
+            rs  = ps.executeQuery();
+            
+            if(rs.next()){
+            	editorialEncontrado = new Editorial(rs.getInt(1), rs.getString(2));  
+            }
+        }catch (SQLException exception) {
+            System.err.println("Error al CARGAR UN Editorial");
+        }
+		return editorialEncontrado;
+	}
+	
+	
+	public List<Editorial> listEditorial(){
+		PreparedStatement ps;
+	        ResultSet rs;
+	       		String consultaSQL = "Select idEditorial, nombreeditorial from scbiblioteca.editorial;";
+			
+			editoriales = new ArrayList<Editorial>();
+	        try {
+	            ps  = conectiondb.getConexion().prepareStatement(consultaSQL);
+	            rs  = ps.executeQuery();
+	            while(rs.next()){
+	            	Editorial e = new Editorial();
+	            	e.setIdEditorial(rs.getInt("idEditorial"));
+	                e.setNombreeditorial(rs.getString("nombreeditorial"));
+	                editoriales.add(e);
+	            }	 
+	            for (int c = 0; c < editoriales.size(); c++) {
+	            	vistaLibro.agregarItem(editoriales.get(c).getIdEditorial());
+	            }
+	            	
+	            
+	        } catch (SQLException exception) {
+	            System.err.println("Error al CARGAR DATOS (Editorial) " + exception);
+	        }
+			return editoriales;
+		}
+	
+	
 	
 }

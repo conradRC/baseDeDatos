@@ -9,7 +9,7 @@ import java.util.List;
 import complementos.Conectiondb;
 import modelo.Editorial;
 import modelo.Libro;
-import modelo.ModeloEditorial;
+import modelo.ModeloLibro;
 import vista.VistaEditorial;
 import vista.VistaLibro;
 
@@ -17,12 +17,12 @@ public class ControladorEditorial implements ActionListener, MouseListener{
 
 	private VistaEditorial vistaEditorial;
 	private VistaLibro vistaLibro;
-	private ModeloEditorial modeloEditorial;
+	private ModeloLibro modeloEditorial;
 	private Editorial editorial;
 	private Conectiondb conexion;
 	
 	
-	public ControladorEditorial(VistaEditorial vista, ModeloEditorial modelo) {
+	public ControladorEditorial(VistaEditorial vista, ModeloLibro modelo) {
 		this.vistaEditorial = vista;
 		this.modeloEditorial = modelo;
 		cargarTabla();
@@ -97,10 +97,6 @@ public class ControladorEditorial implements ActionListener, MouseListener{
 	    	   vistaEditorial.getTabla().tableModel.addRow(fila);
 	       }
 	}
-	
-	
-	
-	
 	
 	@Override
 	public void mouseClicked(MouseEvent arg0) {}
